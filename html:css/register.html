@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <style>
+    table, th, td{
+      border: 1px solid black;
+      border-collapse:collapse;
+    }
+    </style>
+  </head>
+  <body>
+    <form method='POST'>
+      First Name: <input type='text' name='firstname'><br>
+      Last Name: <input type='text' name='lastname'><br>
+      Email: <input type='email' name='email'required><br>
+      Password: <input type='passowrd' name='passowrd' min='5'><br>
+      Birthday: <input type='date' name='birthday'><br>
+      Gender: <input type='radio' name='gender' value='male'>Male
+              <input type='radio' name='gender' value='female'>Female
+              <input type='radio' name='gender' value='other'>Other<br>
+      Pets: <input type='checkbox' name='pet' value='dog'>Dog
+            <input type='checkbox' name='pet' value='cat'>Cat<br>
+      Cars:
+      <select name='cars'>
+        <option value='audi'>Audi</option>
+        <option value='bmw'>BMW</option>
+        <option value='volvo'>Volvo</option>
+      </select><br>
+      <input type='submit' value='Register!'>
+      <input type='reset' value='Reset'> <br><br>
+    </form>
+
+      <h1>Styling Tables</h1>
+      <table width='100%'>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>80</td>
+        </tr>
+      </table>
+
+     <h2><a href='index.html'>Go Back!</a></h2>
+  
+
+
+
+  </body>
+</html>
