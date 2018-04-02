@@ -1,0 +1,132 @@
+h1 {
+  text-align: center;
+  font-family: 'Libre Barcode 128 Text', cursive;
+  font-size:  65px;
+}
+
+.robo {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+}
+
+.head,
+.left_arm,
+.right_arm,
+.body,
+.left_leg,
+.right_leg {
+  background-color: tomato;
+}
+
+.head {
+  display: flex;
+  width: 200px;
+  height: 150px;
+  border-radius: 200px 200px 0 0;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  transform-origin: right top;
+  transition: 1s;
+}
+
+.head:hover {
+  transform: rotate(720deg);
+}
+
+.eyes {
+  display: flex;
+}
+
+.upper_body {
+  display: flex;
+  width: 300px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.left_arm, .right_arm {
+  width: 40px;
+  height: 125px;
+  border-radius: 100px;
+}
+
+.left_arm {
+  margin-right: 10px;
+  transition: 1s;
+}
+
+.left_arm:hover {
+  transform: rotate(1030deg);
+}
+
+.right_arm {
+  margin-left: 10px;
+  transition: 1s;
+}
+
+.right_arm:hover {
+  transform: rotate(850deg);
+}
+
+.body {
+  width: 200px;
+  height: 200px;
+  border-radius: 0 0 50px 50px;
+}
+
+.lower_body {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.left_leg, .right_leg {
+  width: 40px;
+  height: 120px;
+  border-radius: 100px;
+}
+
+.left_leg {
+  margin-left: 35px;
+}
+
+.left_leg:hover {
+  transform: rotate(130deg);
+}
+
+.right_leg {
+  margin-left: 45px;
+}
+
+.right_leg:hover {
+  transform: scale(1.5);
+}
+
+.left_eye, .right_eye {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: white;
+}
+
+.left_eye {
+  top: 100px;
+  left: 40px;
+  position: relative;
+}
+
+.left_eye:hover {
+  transform: scale(1.8);
+}
+
+.right_eye {
+  top: 100px;
+  left: 120px;
+  position: relative;
+}
+
+.right_eye:hover {
+  transform: scale(2);
+}

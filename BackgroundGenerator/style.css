@@ -1,0 +1,25 @@
+body {
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+  font-family: 'Heebo', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.6em;
+  color: rgba(0,0,0,0.4);
+  top: 20%;
+  background: linear-gradient(to right, blue , red) /*from right to left blue to red*/
+}
+
+
+h1 {
+  font-size:70px;
+  width:100%;
+}
+
+h2 {
+  font-size:25px;
+}
+
+h3 {
+  color: rgba(0,0,0,0.4);
+  letter-spacing: 0.01em;
+}
