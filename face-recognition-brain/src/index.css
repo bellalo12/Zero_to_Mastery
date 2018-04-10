@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  background:LINEAR-GRADIENT(TO RIGHT, RGB(255, 100, 107), RGB(203, 255, 197));
+}
+
+button {
+  cursor: pointer;
+}
