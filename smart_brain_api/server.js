@@ -2,72 +2,35 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const bcrypt = require('bcrypt-nodejs');
+const knex = require('knex');
 
-const database ={
-  users: [
-    {
-      id: '123',
-      name: 'John',
-      email: 'john@gmail.com',
-      password: 'cookies',
-      entries: 0,
-      joined: new Date()
-    },
-    {
-      id: '124',
-      name: 'Anna',
-      email: 'anna@gmail.com',
-      password: 'apples',
-      entries: 0,
-      joined: new Date()
-    }
+const register = require('./controllers/register');
+const signin = require('./controllers/signin');
+const profile = require('./controllers/profile');
+const image = require('./controllers/image');
 
-  ]
-}
+const db = knex({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'bellalo',
+    password : '',
+    database : 'smart_brain_db'
+  }
+});
 
 app.use(cors());
 app.use(bodyParser.json());
 app.get('/', (req, res)=>{
-  res.json(database.users)
+  res.json('success login')
 })
 
-app.post('/signin',(req, res)=>{
-  if(req.body.email === database.users[0].email &&
-     req.body.password === database.users[0].password){
-       res.json(database.users[0])
-     } else {
-       res.status(404).json('user not found')
-     }
-})
-
-
-app.post('/register',(req, res)=>{
-  database.users.push({
-    id: '125',
-    name: req.body.name,
-    email: req.body.email,
-    entries: 0,
-    joined: new Date()
-  })
-  res.json(database.users[database.users.length -1])
-})
-
-app.get('/profile/:id', (req, res)=>{
-  database.users.map(user=>{
-    if(user.id === req.params.id){
-      return res.json(user)
-    }
-  })
-})
-
-app.put('/image', (req, res)=>{
-  database.users.map(user=>{
-    if(user.id === req.body.id){
-      user.entries++
-      return res.json(user.entries)
-    }
-  })
-})
+app.post('/signin', (req, res)=>{signin.handlerSignin(req, res, db, bcrypt)})
+app.post('/register' ,(req, res)=>{register.handleRegister(req, res, db, bcrypt)})
+app.get('/profile/:id', (req, res)=>{profile.handleProfile(req, res, db)})
+app.put('/image', (req, res)=>{image.handleImage(req, res, db)})
+app.post('/imageurl',(req, res)=>image.handleApiCall(req, res))
 
 
 
