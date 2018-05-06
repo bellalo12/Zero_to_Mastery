@@ -54,7 +54,7 @@ class Register extends React.Component {
       <div className="mt3">
         <label className="db fw6 lh-copy f6 tc" htmlFor="Name">Name</label>
         <input
-        className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+        className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-90"
         type="name"
         name="name"
         id="name"

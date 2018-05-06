@@ -2,7 +2,6 @@ import React from 'react';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
-import Clarifai from 'clarifai';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Particles from 'react-particles-js';
@@ -10,9 +9,7 @@ import './App.css';
 import SigninForm from './components/SigninForm/SigninForm';
 import Register from './components/Register/Register';
 
-const app = new Clarifai.App({
- apiKey:'f3513f3a892c405c93867e062809a3bf'
-});
+
 
 const particlesOptions ={
   particles: {
@@ -26,24 +23,25 @@ const particlesOptions ={
   }
 }
 
+const initialState ={
+  input: '',
+  imageUrl: '',
+  box:{},
+  route: 'signin',
+  isSignIn: false,
+  user:{
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+  }
+}
+
 class App extends React.Component{
   constructor(){
     super();
-    this.state={
-      input: '',
-      imageUrl: '',
-      box:{},
-      route: 'signin',
-      isSignIn: false,
-      user:{
-        id: '',
-        name: '',
-        email: '',
-        entries: 0,
-        joined: ''
-      }
-
-    }
+    this.state= initialState
   }
 
   updateUser=(data)=>{
@@ -83,11 +81,16 @@ class App extends React.Component{
 
   onImageSubmit=()=>{
     this.setState({imageUrl: this.state.input})
-    app.models.predict(
-      Clarifai.FACE_DETECT_MODEL,
-      this.state.input)
-      .then(response=> {
-        if(response){
+    fetch('http://localhost:3000/imageurl', {
+      method:'post',
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify({
+        input: this.state.input
+      })
+    })
+      .then(res=>res.json())
+      .then(res=> {
+        if(res){
           fetch('http://localhost:3000/image', {
             method:'put',
             headers:{'Content-Type': 'application/json'},
@@ -95,18 +98,19 @@ class App extends React.Component{
               id: this.state.user.id
             })
           })
-          .then(response=> response.json())
+          .then(res=> res.json())
           .then(count=>{
             this.setState(Object.assign(this.state.user, {entries:count}))
           })
+          .catch(console.log)
         }
-        this.displayFaceBox(this.calculateFaceSize(response))})
+        this.displayFaceBox(this.calculateFaceSize(res))})
       .catch(err=>console.log(err))
     }
 
     onRouteChange=(route)=>{
       if(route === 'signout'){
-        this.setState({isSignIn: false})
+        this.setState(initialState)
       } else if (route === 'home'){
         this.setState({isSignIn: true})
       }

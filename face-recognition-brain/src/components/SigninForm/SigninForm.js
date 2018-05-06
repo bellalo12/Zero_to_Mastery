@@ -26,7 +26,7 @@ class SigninForm extends React.Component{
          password: this.state.signInPassword
        })
      })
-     .then(response=>response.json())
+     .then(res=>res.json())
      .then(user=>{
        if(user.id){
          this.props.updateUser(user)
