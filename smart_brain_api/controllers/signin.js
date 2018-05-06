@@ -1,5 +1,8 @@
 
 const handlerSignin = (req, res, db, bcrypt)=>{
+  if(!req.body.email || !req.body.password){
+    return res.status(400).json('incorrect form submit')
+  }
   db.select('email','hash').from('login')
     .where('email', '=', req.body.email)
     .then(data=>{

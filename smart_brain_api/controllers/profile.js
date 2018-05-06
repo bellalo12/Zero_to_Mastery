@@ -1,6 +1,7 @@
 
 
 const handleProfile = (req, res, db)=>{
+  if()
   db.select('*').from('users')
     .where('id', '=', req.params.id)
     .then(user=>{
